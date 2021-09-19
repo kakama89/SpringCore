@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="xmlBean" class="com.example.bean.xml.XMLBean"></bean>
+    <bean id="serviceLocatorFactoryBean" class="com.example.bean.xml.ServiceLocatorFactoryBean"></bean>
+    <bean id="clientServiceBean" factory-bean="serviceLocatorFactoryBean"
+          factory-method="createClientServiceInstance"></bean>
+    <bean name="customerService" class="com.example.bean.xml.FactoryMethodBean" factory-method="createCustomerService"
+
+          init-method="init"
+          destroy-method="destroy"
+
+    ></bean>
+    <bean id="XMLLifeCycle" class="com.example.bean.lifecycle.xml.XMLLifeCycle" init-method="init"
+          destroy-method="destroy" lazy-init="false"></bean>
+
+    <bean id="wiredBean" class="com.example.bean.wired.PostgresConnection"></bean>
+</beans>
